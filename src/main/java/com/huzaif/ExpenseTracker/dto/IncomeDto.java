@@ -7,15 +7,17 @@ import java.time.LocalDateTime;
 public class IncomeDto {
     private long id;
     private int income;
+    private String nameOfIncome;
     private LocalDateTime time;
 
     // Constructors, getters, and setters
     public IncomeDto(){}
 
-    public IncomeDto(long id, int income, LocalDateTime time) {
+    public IncomeDto(long id, int income, LocalDateTime time, String nameOfIncome) {
         this.id = id;
         this.income = income;
         this.time = time;
+        this.nameOfIncome = nameOfIncome;
     }
 
     public long getId() {

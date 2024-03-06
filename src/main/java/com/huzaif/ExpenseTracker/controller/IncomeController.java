@@ -26,6 +26,9 @@ public class IncomeController {
     public ResponseEntity<?> addIncome(@RequestBody Income income, Authentication authentication){
 
         User user = expenseTrackerService.findUserByUsername(authentication.getName());
+        if(income.getNameOfIncome().isEmpty()||income.getNameOfIncome() == null){
+            income.setNameOfIncome("New Income");
+        }
         income.setUser(user);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime currentTime = LocalDateTime.now();
@@ -39,7 +42,7 @@ public class IncomeController {
         User user = expenseTrackerService.findUserByUsername(authentication.getName());
         List<Income> incomes = expenseTrackerService.getIncomeHistory(user);
         List<IncomeDto> incomeDTOs = incomes.stream()
-                .map(income -> new IncomeDto(income.getId(), income.getIncome(), income.getDateAndTime()))
+                .map(income -> new IncomeDto(income.getId(), income.getIncome(), income.getDateAndTime(), income.getNameOfIncome()))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(incomeDTOs);
     }

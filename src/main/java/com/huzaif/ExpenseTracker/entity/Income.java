@@ -10,6 +10,7 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int income;
+    private String nameOfIncome;
     private LocalDateTime DateAndTime;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -17,8 +18,17 @@ public class Income {
     Income(){
     }
 
-    public Income(int income) {
+    public Income(int income, String nameOfIncome) {
         this.income = income;
+        this.nameOfIncome = nameOfIncome;
+    }
+
+    public String getNameOfIncome() {
+        return nameOfIncome;
+    }
+
+    public void setNameOfIncome(String nameOfIncome) {
+        this.nameOfIncome = nameOfIncome;
     }
 
     public LocalDateTime getDateAndTime() {

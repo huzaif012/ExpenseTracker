@@ -8,13 +8,23 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private int expense;
+    private String nameOfExpense;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     Expense(){}
 
-    public Expense(int expense) {
+    public Expense(int expense, String nameOfExpense) {
         this.expense = expense;
+        this.nameOfExpense = nameOfExpense;
+    }
+
+    public String getNameOfExpense() {
+        return nameOfExpense;
+    }
+
+    public void setNameOfExpense(String nameOfExpense) {
+        this.nameOfExpense = nameOfExpense;
     }
 
     public long getId() {

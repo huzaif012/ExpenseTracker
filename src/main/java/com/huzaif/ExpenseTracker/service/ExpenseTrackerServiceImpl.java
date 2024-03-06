@@ -1,7 +1,9 @@
 package com.huzaif.ExpenseTracker.service;
 
+import com.huzaif.ExpenseTracker.entity.Expense;
 import com.huzaif.ExpenseTracker.entity.Income;
 import com.huzaif.ExpenseTracker.entity.User;
+import com.huzaif.ExpenseTracker.repository.ExpenseRepo;
 import com.huzaif.ExpenseTracker.repository.IncomeRepo;
 import com.huzaif.ExpenseTracker.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class ExpenseTrackerServiceImpl implements ExpenseTrackerService{
     UserRepo userRepo;
     @Autowired
     IncomeRepo incomeRepo;
+    @Autowired
+    ExpenseRepo expenseRepo;
 
     @Override
     public User saveUser(User user) {
@@ -44,5 +48,15 @@ public class ExpenseTrackerServiceImpl implements ExpenseTrackerService{
     public Optional<Income> getIncomeById(int id) {
         Optional<Income> optionalIncome = incomeRepo.findById(id);
         return optionalIncome;
+    }
+
+    @Override
+    public Expense saveExpense(Expense expense) {
+        return expenseRepo.save(expense);
+    }
+
+    @Override
+    public List<Expense> getExpenseByUser(User user) {
+        return expenseRepo.findByUser(user);
     }
 }
