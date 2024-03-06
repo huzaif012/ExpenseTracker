@@ -2,12 +2,15 @@ package com.huzaif.ExpenseTracker.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Income {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int income;
+    private LocalDateTime DateAndTime;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -16,6 +19,14 @@ public class Income {
 
     public Income(int income) {
         this.income = income;
+    }
+
+    public LocalDateTime getDateAndTime() {
+        return DateAndTime;
+    }
+
+    public void setDateAndTime(LocalDateTime dateAndTime) {
+        DateAndTime = dateAndTime;
     }
 
     public long getId() {
