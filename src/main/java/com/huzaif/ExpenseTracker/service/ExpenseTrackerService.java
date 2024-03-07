@@ -17,4 +17,6 @@ public interface ExpenseTrackerService {
     public Expense saveExpense(Expense expense);
 
     List<Expense> getExpenseByUser(User user);
+    public Optional<Expense> getExpenseById(int id);
+    public void deleteExpense(int id);
 }

@@ -59,4 +59,14 @@ public class ExpenseTrackerServiceImpl implements ExpenseTrackerService{
     public List<Expense> getExpenseByUser(User user) {
         return expenseRepo.findByUser(user);
     }
+
+    @Override
+    public Optional<Expense> getExpenseById(int id) {
+        return expenseRepo.findById(id);
+    }
+
+    @Override
+    public void deleteExpense(int id) {
+        expenseRepo.deleteById(id);
+    }
 }
